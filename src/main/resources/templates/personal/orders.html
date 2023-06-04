@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Заказы</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<header class="head" >
+  <!--    <a href="@{/orders}">Заказы</a>-->
+  <!--    <a href="@{/cart}">Корзина</a>-->
+  <!--    <a href="@{/logout}">Выйти</a>-->
+
+
+  <form method="get" th:action="@{/lk}">
+    <input type="submit" value="Назад">
+  </form>
+
+  <form method="get" th:action="@{/cart}">
+    <button type="submit">Корзина</button>
+  </form>
+
+  <form method="post" th:action="@{/authentication}">
+    <button type="submit">Выйти</button>
+  </form>
+</header>
+<h3>Заказы</h3>
+<div class="tovari">
+<div th:each="order : ${orders}" class="tovari-2">
+  <h3 th:text="'Заказ №' + ${order.getNumber()}"></h3>
+  <img th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}" width="250px">
+  <p th:text="'Наименование: ' + ${order.getProduct().getTitle()}">
+  <p th:text="'Количество: ' + ${order.getCount()}">
+  <p th:text="'Цена: ' + ${order.getPrice()}">
+  <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
+  <p th:text="'Cтатус: ' + ${order.getStatus()}">
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет-магазин</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<header class="head" >
+<!--    <a href="@{/orders}">Заказы</a>-->
+<!--    <a href="@{/cart}">Корзина</a>-->
+<!--    <a href="@{/logout}">Выйти</a>-->
+
+
+    <form method="get" th:action="@{/orders}">
+        <input type="submit" value="Заказы">
+    </form>
+
+    <form method="get" th:action="@{/cart}">
+        <button type="submit">Корзина</button>
+    </form>
+
+    <form method="get" th:action="@{/authentication}">
+        <button type="submit">Выйти</button>
+    </form>
+</header>
+<div>
+    <h3>Личный кабинет</h3>
+    <div class="poisk". >
+
+    <form th:method="post" th:action="@{/lk/product/search}">
+        <fieldset>
+            <legend>Поиск</legend>
+            <label for="search">Название товара</label>
+            <input type="text" id="search" name="search" th:value="*{value_search}">
+            <br>
+            <p>Цена</p>
+            <label for="from1"></label>
+            <input type="text" name="from1" id="from1" th:value="*{value_price_from1}">
+            <label for="to1"></label>
+            <input type="text" name="to1" id="to1" th:value="*{value_price_to1}">
+            <br>
+            <hr>
+            <p>Отсортировать</p>
+            <div>
+                <input type="radio" id="price_up" name="price" value="sorted_by_price_up">
+                <label for="price_up">По возрастанию</label>
+                <input type="radio" id="price_down" name="price" value="sorted_by_price_down">
+                <label for="price_down">По убыванию</label>
+                <p>Катигория</p>
+                <input type="radio" id="electronic" name="contract" value="electronic">
+                <label for="electronic">Электроника</label>
+                <input type="radio" id="food" name="contract" value="food">
+                <label for="electronic">Еда</label>
+                <input type="radio" id="clothes" name="contract" value="clothes">
+                <label for="electronic">Одежда</label>
+                <!--      <select name="contract">-->
+                <!--        <option value="1">Электроника</option>-->
+                <!--        <option value="2">Еда</option>-->
+                <!--        <option value="3">Одежда</option>-->
+                <!--      </select>-->
+                <br>
+                <br>
+                <input type="submit" value="Найти">
+            </div>
+        </fieldset>
+    </form>
+    </div>
+    <br>
+    <h2>Результат поиска</h2>
+    <br>
+    <div class="result-poiska">
+        <div th:each="product : ${search_product}">
+            <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="250px">
+            <br>
+            <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+            <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+        </div>
+    </div>
+    <hr>
+    <h3>Доступные товары: </h3>
+    <div class="vse-tovari">
+    <div class="tovari">
+        <div th:each="product : ${products}" class="tovari-1">
+            <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="250px">
+            <br>
+            <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+            <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+            <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить в корзину</a>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+</html>

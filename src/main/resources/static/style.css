@@ -1,0 +1,59 @@
+body{
+    background-color: wheat;
+}
+.head{
+    background-color: saddlebrown;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+.head form{
+    margin: 20px;
+    text-decoration: none;
+}
+
+.poisk{
+    margin: 0 auto;
+    width: 750px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+.vse-tovari{
+
+}
+.tovari{
+    display: flex;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 15px;
+}
+.tovari-1{
+    border-radius: 20px;
+    border: 3px solid darkgray;
+    background-color: whitesmoke;
+    justify-content: space-between;
+    margin: 10px;
+    height: 500px;
+    width: 300px;
+    padding: 30px;
+}
+.tovari-2{
+    border-radius: 20px;
+    border: 3px solid darkgray;
+    justify-content: space-between;
+    margin: 10px;
+    height: 750px;
+    width: 300px;
+    padding: 30px;
+}
+.but a:hover{
+
+    background: blue;
+    color: white;
+    text-decoration: underline;
+    padding: 15px;
+    border-radius: 15px;
+}

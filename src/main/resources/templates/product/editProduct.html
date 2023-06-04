@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Изменение товара</title>
+</head>
+<body>
+<h3>Изменение товара</h3>
+<form th:method="POST" th:action="@{/admin/product/edit/{id}(id=${product.getId()})}" th:object="${product}" enctype="multipart/form-data">
+  <label for="title">Введите наименование товара: </label>
+  <input type="text" th:field="*{title}" placeholder="Название" id="title">
+  <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+  <br>
+  <br>
+  <label for="description">Введите описание товара: </label>
+  <textarea th:field="*{description}" placeholder="Описание" id="description"></textarea>
+  <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+  <br>
+  <br>
+  <label for="price">Введите цену товара: </label>
+  <input type="number" th:field="*{price}" min="1" placeholder="Цена" id="price">
+  <br>
+  <br>
+  <label for="category">Выберите категорию товара: </label>
+  <select name="category" th:field="*{category}" id="category">
+    <div th:each="element : ${category}">
+      <option th:text="${element.getName()}" th:value="${element.getId()}">
+    </div>
+  </select>
+  <br>
+  <br>
+  <label for="seller">Введите данные о продавце: </label>
+  <textarea th:field="*{seller}" placeholder="Lorem ipsum dolor sit amet" id="seller"></textarea>
+  <div style="color: red" th:if="${#fields.hasErrors('seller')}" th:errors="*{seller}"></div>
+  <br>
+  <br>
+  <input type="submit" value="Сохранить изменения">
+</form>
+</body>
+</html>
